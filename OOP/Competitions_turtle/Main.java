@@ -6,7 +6,7 @@ public class Main {
         Course course = new Course();
         Team team = new Team("Turtles", "Yellow","Green","Pink","Red","Black");
 
-        team.showResults();
         course.doIt(team);
+        team.showResults();
     }
 }

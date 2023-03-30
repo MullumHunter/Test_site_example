@@ -2,7 +2,7 @@ package myTeam;
 
 public class Course {
 
-    String[] nameCourse = {"jamp","run","swiming"};
+    String[] nameCourse = {"jumping","running","swimming"};
     public void doIt(Team team){
 
         boolean[][] results = new boolean[team.getMembers().length][nameCourse.length];
