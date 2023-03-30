@@ -3,36 +3,33 @@ package myTeam;
 public class Team {
 
     private String nameTeam;
-    private String[] members;
+    private Turtle[] turtles;
     private boolean[] result;
 
-    Team(String nameTeam, String ... members){
+    public Team(String nameTeam, Turtle... turtles) {
         this.nameTeam = nameTeam;
-        this.members = members;
-        this.result = new boolean[members.length];
+        this.turtles = turtles;
+        this.result = new boolean[turtles.length];
     }
 
-    public String getNameTeam(){
+    public String getNameTeam() {
         return nameTeam;
     }
 
-    public String[] getMembers(){
-        return members;
+    public Turtle[] getTurtles() {
+        return turtles;
     }
 
-    public boolean[] getResult(){
+    public boolean[] getResult() {
         return result;
     }
 
-
-    public void showResults(){
-        System.out.println();
+    public void showResults() {
         System.out.println();
         System.out.println("Команда: " + nameTeam);
-        System.out.println();
 
-        for(int i = 0; i < members.length; i++){
-            System.out.println(members[i] + ": " + (result[i] ? "успешно прошел." : "испытание не пройденно."));
+        for (int i = 0; i < turtles.length; i++) {
+            System.out.println(turtles[i].getSuitСolor()  + ": " + (result[i] ? "успешно прошел." : "испытание не пройдено."));
         }
     }
 }
