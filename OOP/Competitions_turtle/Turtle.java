@@ -2,27 +2,20 @@ package myTeam;
 
 public class Turtle {
 
-    private String suitСolor;
-    private int power = (int) (Math.random() * 5) + 3;;
+    private final String suitColor;
+    private final int power;
 
-    public Turtle(String suitСolor){
-        this.suitСolor = suitСolor;
-        this.power = power;
+    public Turtle(String suitColor) {
+        this.suitColor = suitColor;
+        this.power = (int) (Math.random() * 5) + 3;
     }
 
-    public String getSuitСolor() {
-        return suitСolor;
+    public String getSuitColor() {
+        return suitColor;
     }
 
     public int getPower() {
         return power;
     }
 
-    public void setSuitСolor(String suitСolor) {
-        this.suitСolor = suitСolor;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
 }
