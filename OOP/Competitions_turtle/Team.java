@@ -2,18 +2,18 @@ package myTeam;
 
 public class Team {
 
-    private String nameTeam;
+    private String name;
     private Turtle[] turtles;
     private boolean[] result;
 
-    public Team(String nameTeam, Turtle... turtles) {
-        this.nameTeam = nameTeam;
+    public Team(String name, Turtle... turtles) {
+        this.name = name;
         this.turtles = turtles;
         this.result = new boolean[turtles.length];
     }
 
-    public String getNameTeam() {
-        return nameTeam;
+    public String getName() {
+        return name;
     }
 
     public Turtle[] getTurtles() {
@@ -26,10 +26,10 @@ public class Team {
 
     public void showResults() {
         System.out.println();
-        System.out.println("Команда: " + nameTeam);
+        System.out.println("Команда: " + name);
 
         for (int i = 0; i < turtles.length; i++) {
-            System.out.println(turtles[i].getSuitСolor()  + ": " + (result[i] ? "успешно прошел." : "испытание не пройдено."));
+            System.out.println(turtles[i].getSuitColor() + ": " + (result[i] ? "успешно прошел." : "испытание не пройдено."));
         }
     }
 }

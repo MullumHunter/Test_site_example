@@ -1,40 +1,42 @@
 package myTeam;
 
 public class Course {
-    private Obstacle[] obstacles;
+    private final Obstacle[] obstacles;
 
     public Course(Obstacle... obstacles) {
         this.obstacles = obstacles;
     }
-    public void doIt(Team team){
 
-        boolean[][] results = new boolean[team.getTurtles().length][obstacles.length];
+    public void doIt(Team team) {
 
-        for(int j = 0; j < obstacles.length; j++){
-            for(int i = 0; i < team.getTurtles().length; i++){
-                    double chance = (team.getTurtles()[i].getPower() + obstacles[j].getHardLevel()) / 20.0;
-                    double fortune = Math.random();
-                    if(fortune < chance) {
+        Turtle[] teamTurtles = team.getTurtles();
+        boolean[][] results = new boolean[teamTurtles.length][obstacles.length];
+
+        for (int j = 0; j < obstacles.length; j++) {
+            for (int i = 0; i < teamTurtles.length; i++) {
+                double chance = (teamTurtles[i].getPower() + obstacles[j].getHardLevel()) / 20.0;
+                double fortune = Math.random();
+                if (fortune < chance) {
                     results[i][j] = true;
                 }
             }
         }
 
-        for (int i = 0; i < team.getTurtles().length; i++) {
+        for (int i = 0; i < teamTurtles.length; i++) {
             int count = 0;
 
             System.out.println();
             System.out.println();
-            System.out.println("Успехи  " + team.getTurtles()[i].getSuitСolor() + ": (сила " + team.getTurtles()[i].getPower()+")");
+            System.out.println("Успехи  " + teamTurtles[i].getSuitColor() + ": (сила " + teamTurtles[i].getPower() + ")");
 
             for (int j = 0; j < obstacles.length; j++) {
 
                 String result = results[i][j] ? "+" : "-";
-                System.out.println("(сложность " +obstacles[j].getHardLevel()+") " +obstacles[j].getTitle() + ": " + result );
+                System.out.println("(сложность " + obstacles[j].getHardLevel() + ") " + obstacles[j].getTitle() + ": " + result);
 
-                if(results[i][j]){
+                if (results[i][j]) {
                     count++;
-                    if(count >= obstacles.length){
+                    if (count >= obstacles.length) {
                         team.getResult()[i] = true;
                     }
                 }
