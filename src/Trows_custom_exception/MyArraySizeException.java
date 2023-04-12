@@ -1,4 +1,4 @@
-package example;
+package Trows_custom_exception;
 
 public class MyArraySizeException  extends Exception{
     public MyArraySizeException(){

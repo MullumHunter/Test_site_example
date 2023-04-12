@@ -1,4 +1,4 @@
-package myTeam;
+package OOP.Competitions_turtle;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package myTeam;
+package OOP.Competitions_turtle;
 
 public class Course {
     private final Obstacle[] obstacles;
