@@ -1,4 +1,4 @@
-package Trows_custom_exception;
+package exceptions;
 
 public class MyArrayDataException extends Exception{
     public MyArrayDataException  (int i, int j){

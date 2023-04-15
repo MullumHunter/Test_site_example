@@ -1,4 +1,4 @@
-package Boxes_fruit;
+package generics;
 
 import java.util.ArrayList;
 
@@ -20,11 +20,8 @@ public class Box<T extends Fruit> {
     }
 
     public void transferFruits(Box<T> boxNext) {
-        if (this.getClass().equals(boxNext.getClass())) {
-            boxNext.fruits.addAll(this.fruits);
-            this.fruits.clear();
-
-        }
+        boxNext.fruits.addAll(this.fruits);
+        this.fruits.clear();
     }
 
     public boolean compare(Box<?> box) {

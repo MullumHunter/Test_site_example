@@ -1,4 +1,4 @@
-package OOP.Competitions_turtle;
+package oop;
 
 public class Team {
 
