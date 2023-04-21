@@ -1,4 +1,4 @@
-package OOP.Competitions_turtle;
+package oop;
 
 import java.util.Objects;
 

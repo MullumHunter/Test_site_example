@@ -1,4 +1,4 @@
-package Boxes_fruit;
+package generics;
 
 
 public class Orange extends Fruit {
