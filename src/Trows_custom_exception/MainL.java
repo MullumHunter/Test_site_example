@@ -1,4 +1,4 @@
-package Trows_custom_exception;
+package exceptions;
 
 
 class MainL {
