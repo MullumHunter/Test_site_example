@@ -13,19 +13,12 @@ public class Main {
         System.out.println(beetles.length);
         System.out.println(incomparable);
 
+        checkCountWordsWithMap(beetles, beetles2);
+        printMap(beetles2);
+        checkCountWords(beetles);
+    }
 
-
-//        for (int i = 0; i < beetles.length; i++) {
-//            int count = 0;
-//            for (int j = 0; j < beetles.length; j++) {
-//                if (beetles[i].equals(beetles[j])) {
-//                    count++;
-//                }
-//            }
-//            System.out.println(beetles[i] + " - " + count);
-//        }
-
-
+    private static void checkCountWordsWithMap(String[] beetles, HashMap<String, Integer> beetles2) {
         for (int i = 0; i < beetles.length; i++) {
             String word = beetles[i];
             if (beetles2.containsKey(word)) {
@@ -35,11 +28,30 @@ public class Main {
                 beetles2.put(word, 1);
             }
         }
+    }
 
-        for (String word : beetles2.keySet()) {
-            int count = beetles2.get(word);
+    private static void printMap(HashMap<String, Integer> beetlesMap) {
+        Set<String> keySet = beetlesMap.keySet();
+        for (String word : keySet) {
+            int count = beetlesMap.get(word);
             System.out.println(word + " " + count);
+        }
 
+        Set<Map.Entry<String, Integer>> entries = beetlesMap.entrySet();
+        for (Map.Entry<String, Integer> pair : entries) {
+            System.out.println("Key: " + pair.getKey() + " Value: " + pair.getValue());
+        }
+    }
+
+    private static void checkCountWords(String[] beetles) {
+        for (int i = 0; i < beetles.length; i++) {
+            int count = 0;
+            for (int j = 0; j < beetles.length; j++) {
+                if (beetles[i].equals(beetles[j])) {
+                    count++;
+                }
+            }
+            System.out.println(beetles[i] + " - " + count);
         }
     }
 }
