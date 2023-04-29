@@ -1,9 +1,10 @@
-package HashMap;
+package home.HashMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public class Telefon {
+
     private HashMap<String, List<String>> contacts;
     Telefon() {
         contacts = new HashMap<>();
@@ -16,7 +17,7 @@ public class Telefon {
                 List<String> allContacts = contacts.get(name);
                 allContacts.add(namber);
             } else {
-                ArrayList<String> newContact = new ArrayList<>();
+                List<String> newContact = new ArrayList<>();
                 newContact.add(namber);
                 contacts.put(name, newContact);}
         } else {
@@ -24,7 +25,7 @@ public class Telefon {
         }
     }
 
-    public ArrayList<String> getContacts(String name) {
-        return (ArrayList<String>) contacts.get(name);
+    public List<String> getContacts(String name) {
+        return contacts.get(name);
     }
 }
