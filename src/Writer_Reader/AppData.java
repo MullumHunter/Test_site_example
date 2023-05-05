@@ -1,4 +1,4 @@
-package home.Writer_Reader;
+package Test_site_example.Writer_Reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,14 +11,11 @@ public class AppData {
     private String[] header;
     private List<int[]> data;
 
-    public AppData(String[] header, List<int[]> data) {
-        this.header = header;
-        this.data = data;
-    }
 
-    public static AppData read(String filepath) {
-        List<int[]> data = new ArrayList<>();
-        String[] header = null;
+
+    public void read(String filepath) {
+        data = new ArrayList<>();
+        header = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
@@ -40,11 +37,11 @@ public class AppData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new AppData(header, data);
     }
 
 
     public void save(String filepath) {
+
         try (FileWriter writer = new FileWriter(filepath)) {
 
             for (String h : header) {
@@ -64,5 +61,27 @@ public class AppData {
             e.printStackTrace();
         }
     }
+    public void saveTxt(String filepath) {
+
+        try (FileWriter writer = new FileWriter(filepath)) {
+
+            for (String h : header) {
+                writer.write(h);
+                writer.write(";");
+            }
+            writer.write("\n");
+
+            for (int[] row : data) {
+                for (int cell : row) {
+                    writer.write(Integer.toString(cell));
+                    writer.write(";");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
