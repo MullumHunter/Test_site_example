@@ -1,4 +1,4 @@
-package Test_site_example.Writer_Reader;
+package Writer_Reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

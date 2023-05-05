@@ -1,4 +1,4 @@
-package oop;
+package OOP;
 
 public class Course {
     private final Obstacle[] obstacles;
