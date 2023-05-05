@@ -1,30 +1,23 @@
 package Writer_Reader;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AppData {
     private String[] header;
     private int[][] data;
-
+    private String DELIMITER = ";";
 
     public void read(String filepath) {
-
-        List<int[]> list;
-
-        list = new ArrayList<>();
         header = null;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+            List<int[]> list = new ArrayList<>();
             String line;
             int lineNum = 0;
-
-            while ((line = br.readLine()) != null) {
-                String[] tokens = line.split(";");
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split(DELIMITER);
                 if (lineNum == 0) {
                     header = tokens;
                 } else {
@@ -35,29 +28,33 @@ public class AppData {
                     list.add(row);
                 }
                 lineNum++;
+                data = list.toArray(new int[0][]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        data = list.toArray(new int[0][]);
     }
-
     public void save(String filepath) {
 
-        try (FileWriter writer = new FileWriter(filepath)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
 
+            StringBuffer oneLine = new StringBuffer();
             for (String h : header) {
-                writer.write(h);
-                writer.write(";");
+                oneLine.append(h);
+                oneLine.append(DELIMITER);
             }
-            writer.write("\n");
+            writer.write(oneLine.toString());
+            writer.newLine();
+            oneLine.delete(0, oneLine.length());
 
             for (int[] row : data) {
                 for (int cell : row) {
-                    writer.write(Integer.toString(cell));
-                    writer.write(";");
+                    oneLine.append(cell);
+                    oneLine.append(DELIMITER);
                 }
-                writer.write("\n");
+                writer.write(oneLine.toString());
+                writer.newLine();
+                oneLine.delete(0, oneLine.length());
             }
         } catch (IOException e) {
             e.printStackTrace();
