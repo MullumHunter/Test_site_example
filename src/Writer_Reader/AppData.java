@@ -9,12 +9,14 @@ import java.util.List;
 
 public class AppData {
     private String[] header;
-    private List<int[]> data;
-
+    private int[][] data;
 
 
     public void read(String filepath) {
-        data = new ArrayList<>();
+
+        List<int[]> list;
+
+        list = new ArrayList<>();
         header = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -30,15 +32,15 @@ public class AppData {
                     for (int i = 0; i < tokens.length; i++) {
                         row[i] = Integer.parseInt(tokens[i]);
                     }
-                    data.add(row);
+                    list.add(row);
                 }
                 lineNum++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        data = list.toArray(new int[0][]);
     }
-
 
     public void save(String filepath) {
 
@@ -61,27 +63,4 @@ public class AppData {
             e.printStackTrace();
         }
     }
-    public void saveTxt(String filepath) {
-
-        try (FileWriter writer = new FileWriter(filepath)) {
-
-            for (String h : header) {
-                writer.write(h);
-                writer.write(";");
-            }
-            writer.write("\n");
-
-            for (int[] row : data) {
-                for (int cell : row) {
-                    writer.write(Integer.toString(cell));
-                    writer.write(";");
-                }
-                writer.write("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
