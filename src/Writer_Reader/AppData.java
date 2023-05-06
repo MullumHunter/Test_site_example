@@ -7,33 +7,29 @@ import java.util.List;
 public class AppData {
     private String[] header;
     private int[][] data;
-    private String DELIMITER = ";";
+    private final String DELIMITER = ";";
 
     public void read(String filepath) {
-        header = null;
-
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-            List<int[]> list = new ArrayList<>();
+            List<int[]> parsedValues = new ArrayList<>();
+            header = reader.readLine().split(DELIMITER);
+
             String line;
-            int lineNum = 0;
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(DELIMITER);
-                if (lineNum == 0) {
-                    header = tokens;
-                } else {
-                    int[] row = new int[tokens.length];
-                    for (int i = 0; i < tokens.length; i++) {
-                        row[i] = Integer.parseInt(tokens[i]);
-                    }
-                    list.add(row);
+                int[] row = new int[tokens.length];
+                for (int i = 0; i < tokens.length; i++) {
+                    row[i] = Integer.parseInt(tokens[i]);
                 }
-                lineNum++;
-                data = list.toArray(new int[0][]);
+                parsedValues.add(row);
             }
+
+            data = parsedValues.toArray(new int[][]{});
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public void save(String filepath) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
@@ -43,21 +39,23 @@ public class AppData {
                 oneLine.append(h);
                 oneLine.append(DELIMITER);
             }
-            writer.write(oneLine.toString());
-            writer.newLine();
-            oneLine.delete(0, oneLine.length());
+            writeAndClearBuffer(writer, oneLine);
 
             for (int[] row : data) {
                 for (int cell : row) {
                     oneLine.append(cell);
                     oneLine.append(DELIMITER);
                 }
-                writer.write(oneLine.toString());
-                writer.newLine();
-                oneLine.delete(0, oneLine.length());
+                writeAndClearBuffer(writer, oneLine);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void writeAndClearBuffer(BufferedWriter writer, StringBuffer oneLine) throws IOException {
+        writer.write(oneLine.toString());
+        writer.newLine();
+        oneLine.delete(0, oneLine.length());
     }
 }
